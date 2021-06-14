@@ -1,5 +1,7 @@
 package com.bridgelab;
 
+import java.util.EmptyStackException;
+
 public class SimpleStack 
 {
 	Node top;
@@ -18,7 +20,54 @@ public class SimpleStack
 	}
 	
 	/**
-	 * Printing Stack.
+	 * @return
+	 * popping i.e. removing last pushed element from stack.
+	 */
+	public int pop()
+	{
+		if(isEmpty())
+		{
+			throw new EmptyStackException();
+		}
+		int result = top.data;
+		top = top.next;
+		size--;
+		return result;
+	}
+	
+	/**
+	 * @return
+	 * Printing last pushed element only.
+	 */
+	public int peek()
+	{
+		if(isEmpty())
+		{
+			throw new EmptyStackException();
+		}
+		return top.data;
+	}
+	
+	/**
+	 * @return
+	 * This function will return size of an stack.
+	 */
+	public int size()
+	{
+		return size;
+	}
+	
+	/**
+	 * @return
+	 * Checking if stack is empty or not.
+	 */
+	public boolean isEmpty()
+	{
+		return size == 0;
+	}
+	
+	/**
+	 * Printing elements of Stack.
 	 */
 	public void displayStack()
 	{
@@ -26,8 +75,9 @@ public class SimpleStack
 		
 		while(curruent != null)
 		{
-			System.out.println(curruent.data);
+			System.out.print(curruent.data + " --> ");
 			curruent = curruent.next;
 		}
+		System.out.println();
 	}
 }
